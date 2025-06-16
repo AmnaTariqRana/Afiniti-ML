@@ -1,6 +1,4 @@
-Warning: PowerShell detected that you might be using a screen reader and has disabled PSReadLine for compatibility purposes. If you want to re-enable it, run 'Import-Module PSReadLine'.
-
-PS C:\Users\Ibrahim\Downloads\Repositories\Afiniti-ML> & C:/Users/Ibrahim/AppData/Local/Programs/Python/Python312/python.exe c:/Users/Ibrahim/Downloads/Repositories/Afiniti-ML/download.py
+PS C:\Users\Amna\Downloads\Repositories\Afiniti-ML> & C:/Users/Amna/AppData/Local/Programs/Python/Python312/python.exe c:/Users/Amna/Downloads/Repositories/Afiniti-ML/download.py
 Downloading Jumanji_(1995)...
 [youtube] Extracting URL: https://www.youtube.com/watch?v=3LPANjHlPxo 
 [youtube] 3LPANjHlPxo: Downloading webpage 
