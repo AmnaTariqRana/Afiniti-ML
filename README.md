@@ -7,7 +7,7 @@
 
 <h2>📁 Dataset & Preprocessing</h2>
 
-<p>We use the <a href="https://grouplens.org/datasets/movielens/" target="_blank">MovieLens dataset</a> to map <code>movieId</code> to YouTube trailer IDs. The dataset preparation involves:</p>
+<p>I used the <a href="https://grouplens.org/datasets/movielens/" target="_blank">MovieLens dataset</a> to map <code>movieId</code> to YouTube trailer IDs. The dataset preparation involves:</p>
 
 <ul>
   <li>Selection of <strong>~200 trailers</strong> (subset of 25,000 movie IDs)</li>
@@ -28,7 +28,7 @@ movie_name, genres, cleaned_transcript
 
 <h2>🎯 Genre Classification</h2>
 
-<p>We focus on the following <strong>7 primary genres</strong>:</p>
+<p>I have focused on the following <strong>7 primary genres</strong>:</p>
 
 <ul>
   <li>Action</li>
@@ -100,5 +100,5 @@ movie_name, genres, cleaned_transcript
   <li>Radford et al. (2022), <em>Robust Speech Recognition via Large‑Scale Weak Supervision</em>, Whisper ASR</li>
   <li>Harper & Konstan (2015), <em>The MovieLens Datasets: History and Context</em>, ACM TiiS</li>
   <li>Sulun et al. (2024), <em>Movie Trailer Genre Classification Using Multimodal Pretrained Features</em>, ESWA</li>
-  <li>Wenfu Liu et al. (2021), <em>Multi-label Text Classification with tALBERT-CNN</em>, IJCI</li>
+  <li>nfu Liu et al. (2021), <em>Multi-label Text Classification with tALBERT-CNN</em>, IJCI</li>
 </ol>
