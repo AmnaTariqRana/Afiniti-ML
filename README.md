@@ -1,6 +1,4 @@
-
-<h1>🎬 Movie Genre Detection Using Trailers</h1>
-
+<h1 align="center">Movie Genre Detection Using Trailers</h1>
 <p>This project aims to detect the <strong>genre(s)</strong> of a movie by analysing its <strong>YouTube trailer</strong>, using <strong>transcript-based machine learning</strong> techniques. Each trailer may belong to <strong>multiple genres</strong>, making this a <em>multi-label classification task</em>.</p>
 
 <hr />
