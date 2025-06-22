@@ -1,0 +1,12 @@
+﻿First, take the trailer IDs and then download at least 500 trailers for the first step of analysis. Next, extract the audio and video along with the metadata. Use off-the-shelf models (for automatic speech recognition) as a pre-processing step. Then, store the data (movie name, genre and trailer transcript extracted from the speech recognition model) in a CSV file. Analyse the common word distributions after cleaning the transcripts dataset of any symbols and tokenising and maybe lemmatization the transcripts using the ngrams technique for every genre and first perform this across a single genre’s transcripts, then perform across multiple genres and pick distinct words for each genre. This filters out the common words between genres.
+
+
+Store all the distinct words for each genre along with the movie name and transcript in the CSV file. Train the model on the distinct words for each genre and the overall genres, as a form of supervised learning, then download all the trailers from the MovieLens dataset that are above 25000, and perform the above operations on them as well. Now we will start the unsupervised learning part. Split the dataset into 70% for training, 15% for validation and 15% for testing. 
+To calculate performance metrics from the testing and training procedure described, first ensure that each trailer in the dataset has a corresponding set of predicted genres (from your trained model) and actual genres (from your labels). After splitting the dataset into 70% training, 15% validation, and 15% testing, train your model on the training set using the distinct words extracted from transcripts as input features. Then, evaluate the model on the test set by comparing the predicted genres to the actual ones. Use multi-label classification metrics such as micro and macro F1-score, accuracy at top-k, and mean average precision (mAP) to assess performance. These metrics capture how well the model handles multiple genres per trailer and can be calculated using libraries like scikit-learn.
+
+
+
+
+
+
+Movie Genre Detection through NLP and ML using only movie trailers
