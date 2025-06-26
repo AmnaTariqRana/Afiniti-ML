@@ -1,75 +1,33 @@
 import os
-import wave
-import json
-import pandas as pd
-from vosk import Model, KaldiRecognizer
+from google.cloud import speech_v1p1beta1 as speech  # Use extended version
+import time
 
-def transcribe_audio(audio_file_path):
-    model_path = "vosk-model-small-en-us-0.15"
+# Path to your Google Cloud credentials
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "afiniti-ml.json"
 
-    wf = wave.open(audio_file_path, "rb")
-    if wf.getnchannels() != 1 or wf.getsampwidth() != 2 or wf.getframerate() != 16000:
-        raise ValueError(f"{audio_file_path} must be mono, 16-bit, 16kHz")
+client = speech.SpeechClient()
 
-    model = Model(model_path)
-    rec = KaldiRecognizer(model, wf.getframerate())
+file_name = "audios/'Til_There_Was_You_(1997)_8VFQ9qzRbgI.wav"
 
-    results = []
-    while True:
-        data = wf.readframes(4000)
-        if len(data) == 0:
-            break
-        if rec.AcceptWaveform(data):
-            results.append(json.loads(rec.Result()))
-    results.append(json.loads(rec.FinalResult()))
+with open(file_name, "rb") as f:
+    byte_data = f.read()
 
-    transcript = " ".join(r.get("text", "") for r in results)
-    return transcript
+audio = speech.RecognitionAudio(content=byte_data)
 
-def process_all_audio_files(csv_path="trailerData.csv", audio_folder="audios"):
-    df = pd.read_csv(csv_path)
+config = speech.RecognitionConfig(
+    encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
+    sample_rate_hertz=16000,  # adjust if needed
+    language_code="en-UK",
+    enable_automatic_punctuation=True,
+)
 
-    if 'transcript' not in df.columns:
-        df['transcript'] = ""
+# Use long-running recognize for large files
+operation = client.long_running_recognize(config=config, audio=audio)
+print("Processing audio file...")
 
-    model_path = "vosk-model-small-en-us-0.15"
-    model = Model(model_path)
+response = operation.result(timeout=300)
 
-    for idx, row in df.iterrows():
-        audio_filename = row['audio_file']
-        audio_path = os.path.join(audio_folder, audio_filename)
-
-        if not os.path.isfile(audio_path):
-            print(f"[SKIPPED] File not found: {audio_filename}")
-            continue
-
-        # print(f"[PROCESSING] {audio_filename}")
-        try:
-            wf = wave.open(audio_path, "rb")
-            if wf.getnchannels() != 1 or wf.getsampwidth() != 2 or wf.getframerate() != 16000:
-                print(f"[SKIPPED] Invalid format: {audio_filename}")
-                continue
-
-            rec = KaldiRecognizer(model, wf.getframerate())
-            results = []
-
-            while True:
-                data = wf.readframes(4000)
-                if len(data) == 0:
-                    break
-                if rec.AcceptWaveform(data):
-                    results.append(json.loads(rec.Result()))
-            results.append(json.loads(rec.FinalResult()))
-
-            transcript = " ".join(r.get("text", "") for r in results)
-            df.at[idx, 'transcript'] = transcript
-            print(f"[DONE] Transcript added for: {audio_filename}")
-
-        except Exception as e:
-            print(f"[ERROR] {audio_filename}: {e}")
-
-    df.to_csv(csv_path, index=False)
-    print("[FINISHED] CSV updated.")
-
-# Run the full processing
-process_all_audio_files()
+# Print transcript
+for result in response.results:
+    print("Transcript:", result.alternatives[0].transcript)
+    print("Confidence:", result.alternatives[0].confidence)
