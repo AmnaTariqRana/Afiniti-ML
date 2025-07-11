@@ -94,7 +94,7 @@ movie_name, genres, cleaned_transcript
 </ul>
 
 <hr />
-## 👨‍💻 Contributors
+<h2>👨‍💻 Contributors</h2>
 
 - [@AmnaTariqRana](https://github.com/AmnaTariqRana)
 - [@ib-hussain](https://github.com/ib-hussain)
