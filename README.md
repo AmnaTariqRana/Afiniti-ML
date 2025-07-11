@@ -10,7 +10,7 @@
 <p>I used the <a href="https://grouplens.org/datasets/movielens/" target="_blank">MovieLens dataset</a> to map <code>movieId</code> to YouTube trailer IDs. The dataset preparation involves:</p>
 
 <ul>
-  <li>Selection of <strong>~200 trailers</strong> (subset of 25,000 movie IDs)</li>
+  <li>Selection of <strong>~500 trailers</strong> (subset of 25,000 movie IDs)</li>
   <li>Downloading trailers using <code>yt-dlp</code></li>
   <li><strong>Audio/video separation</strong> and <strong>preprocessing</strong></li>
   <li><strong>Speech-to-text transcription</strong> using Google's ASR model</li>
